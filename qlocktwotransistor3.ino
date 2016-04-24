@@ -44,7 +44,7 @@ bool nach = false;
 bool halb = false;
 bool seccorrhelp = false;
 
-int seccorrday = 13;
+int seccorrday = 0;      //seconds correction
 
 int minutebuff;
 int hourbuff;

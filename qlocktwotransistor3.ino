@@ -48,8 +48,8 @@ bool seccorrhelp = false;
 
 int seccorrday = 0;      //seconds correction
 
-int minutebuff;
-int hourbuff;
+int minutebuff = 5;
+int hourbuff = 5;
 
 // Shift Register Order : SR1: (S1S2S3S4S5S6S7S8) SR2: (S9S10S11R2R1R10R9R8) SR3: (R7R6R5R4R3)
 const byte qlockarstd[3] = {0b11111111, 0b11100000, 0b00000000};
@@ -121,10 +121,10 @@ void loop () {
       minutevar = minutebuff;
     }
     
-    if(hourvar > 25)
-    {
-      hourvar = hourbuff;
-    }
+  if(hourvar > 25)
+  {
+    hourvar = hourbuff;
+  }
     
   for(int i = 0; i < 500; i++)
   {

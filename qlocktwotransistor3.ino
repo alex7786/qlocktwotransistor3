@@ -1,7 +1,9 @@
 // SMD Variant !!!
 
 #include <Wire.h>
-#include "RTClib.h"
+//#include "RTClib.h"
+#include <DS3232RTC.h>
+#include <Time.h> 
 
 #define DEBUG false //set to true for Serial Information
 #define SHOWTIME false //set to true for Serial clock
@@ -55,7 +57,8 @@ byte qlockar[3];
 
 const int onboardled = 13;
 
-RTC_DS1307 RTC;
+time_t myTime;
+//RTC_DS1307 RTC;
 
 void settimeswitch(int hourplus, int minplus);
 void ldrdrim(int ldrin, int ldrdimout, int minutes);
@@ -74,7 +77,7 @@ void alloff();
 void setup () {
   Serial.begin(57600);
   Wire.begin();
-  RTC.begin();
+  //RTC.begin();
   pinMode(hourplus, INPUT_PULLUP);
   pinMode(minplus, INPUT_PULLUP);
   
@@ -94,17 +97,20 @@ void setup () {
   
   alloff();
 
+  /*
   if (! RTC.isrunning()) {
     Serial.println("RTC is NOT running!");
     //RTC.adjust(DateTime(__DATE__, __TIME__));      //sets the RTC to the date & time this sketch was compiled
   }
+  */
 
 }
 
 void loop () {
-  DateTime now = RTC.now();
-  int minutevar = (int)now.minute();
-  int hourvar = (int)now.hour();
+  myTime = RTC.get();
+  //DateTime now = RTC.now();
+  int minutevar = (int)minute(myTime);
+  int hourvar = (int)hour(myTime);
   if(hourvar < 25 && minutevar < 60)
   {
     minutebuff = minutevar;
@@ -138,7 +144,7 @@ void loop () {
     alloff();
     esist();
     alloff();
-    secondcorr(hourvar, minutevar, (int)now.second(), seccorrhelp, seccorrday);
+    secondcorr(hourvar, minutevar, (int)second(myTime), seccorrhelp, seccorrday);
   }
 }
 
@@ -944,16 +950,16 @@ void ldrdrim(int ldrin, int ldrdimout, int minutes)
 
 void settimeswitch(int hourplus, int minplus)
 {    
-  DateTime now = RTC.now();
+  //DateTime now = RTC.now();
   
   if(SHOWTIME)
   {
     Serial.print("Current Time set: ");
-    Serial.print(now.hour(), DEC);
+    Serial.print(hour(myTime), DEC);
     Serial.print(':');
-    Serial.print(now.minute(), DEC);
+    Serial.print(minute(myTime), DEC);
     Serial.print(':');
-    Serial.print(now.second(), DEC);
+    Serial.print(second(myTime), DEC);
     Serial.println();
     Serial.println();
     
@@ -966,21 +972,33 @@ void settimeswitch(int hourplus, int minplus)
   
   if(!digitalRead(hourplus))
   {
-    RTC.adjust(DateTime(now.year(),now.month(),now.day(),now.hour()+1,now.minute(),0));
+    //RTC.adjust(DateTime(now.year(),now.month(),now.day(),now.hour()+1,now.minute(),0));
+    setTime(hour(myTime)+1,minute(myTime),second(myTime),day(myTime),month(myTime),year(myTime));
+    myTime = now();
+    RTC.set(myTime);
     delay(300);
-    if(now.hour() >= 24)
+    if(hour(myTime) >= 24)
     {
-      RTC.adjust(DateTime(now.year(),now.month(),now.day(),0,now.minute(),0));
+      //RTC.adjust(DateTime(now.year(),now.month(),now.day(),0,now.minute(),0));
+      setTime(0,minute(myTime),second(myTime),day(myTime),month(myTime),year(myTime));
+      myTime = now();
+      RTC.set(myTime);
     }
   }
   
   if(!digitalRead(minplus))
   {
-    RTC.adjust(DateTime(now.year(),now.month(),now.day(),now.hour(),now.minute()+1,0));
+    //RTC.adjust(DateTime(now.year(),now.month(),now.day(),now.hour(),now.minute()+1,0));
+    setTime(hour(myTime),minute(myTime)+1,0,day(myTime),month(myTime),year(myTime));
+    myTime = now();
+    RTC.set(myTime);
     delay(300);
-    if(now.minute() >= 60)
+    if(minute(myTime) >= 60)
     {
-      RTC.adjust(DateTime(now.year(),now.month(),now.day(),now.hour(),0,0));
+      //RTC.adjust(DateTime(now.year(),now.month(),now.day(),now.hour(),0,0));
+      setTime(hour(myTime),0,0,day(myTime),month(myTime),year(myTime));
+      myTime = now();
+      RTC.set(myTime);
     }
   }
 }
@@ -1079,12 +1097,15 @@ void alloff()
 
 void secondcorr(int hours, int minutes, int seconds, bool helpvar, int seccor)
 {
-  DateTime now = RTC.now();
+  //DateTime now = RTC.now();
   
   if(hours == 0 && minutes == 0 && seconds == 0 && helpvar == false)
   {
     helpvar = true;
-    RTC.adjust(DateTime(now.year(),now.month(),now.day(),now.hour(),now.minute(),now.second() + seccor));
+    //RTC.adjust(DateTime(now.year(),now.month(),now.day(),now.hour(),now.minute(),now.second() + seccor));
+    setTime(hour(myTime),minute(myTime),second(myTime) + seccor,day(myTime),month(myTime),year(myTime));
+    myTime = now();
+    RTC.set(myTime);
   }
   
   if(hours == 1)

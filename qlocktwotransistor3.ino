@@ -78,6 +78,11 @@ void setup () {
   Serial.begin(57600);
   Wire.begin();
   //RTC.begin();
+  
+  setTime(17,53,0,2,5,2016);    //set current time here
+  myTime = now();
+  RTC.set(myTime);
+    
   pinMode(hourplus, INPUT_PULLUP);
   pinMode(minplus, INPUT_PULLUP);
   
@@ -116,12 +121,12 @@ void loop () {
     minutebuff = minutevar;
     hourbuff = hourvar;
   }
-  if(minutevar > 60)
+  if(minutevar >= 60)
     {
       minutevar = 0;
     }
     
-  if(hourvar > 25)
+  if(hourvar >= 25)
   {
     hourvar = 0;
   }
@@ -961,13 +966,21 @@ void settimeswitch(int hourplus, int minplus)
     Serial.print(':');
     Serial.print(second(myTime), DEC);
     Serial.println();
-    Serial.println();
     
     Serial.print("Current Button State: ");
     Serial.print(digitalRead(hourplus));
     Serial.print(digitalRead(minplus));
     Serial.println();
-    Serial.println();
+    
+    if ( RTC.oscStopped(false) ) {      
+      Serial.print("oscillator stopped");
+      Serial.println();
+    }
+    else
+    {
+      Serial.print("oscillator ok");
+      Serial.println();
+    }
   }
   
   if(!digitalRead(hourplus))

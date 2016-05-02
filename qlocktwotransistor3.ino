@@ -118,12 +118,12 @@ void loop () {
   }
   if(minutevar > 60)
     {
-      minutevar = minutebuff;
+      minutevar = 0;
     }
     
   if(hourvar > 25)
   {
-    hourvar = hourbuff;
+    hourvar = 0;
   }
     
   for(int i = 0; i < 500; i++)

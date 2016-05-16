@@ -46,6 +46,8 @@ bool nach = false;
 bool halb = false;
 bool seccorrhelp = false;
 
+bool rewrite = false;
+
 int seccorrday = 0;      //seconds correction
 
 int minutebuff = 5;
@@ -125,6 +127,19 @@ void loop () {
     {
       minutevar = 0;
     }
+    
+  if(minutevar == 30 && rewrite == false)          //test
+    {
+      setTime(hour(myTime),minute(myTime),second(myTime),day(myTime),month(myTime),year(myTime));
+      myTime = now();
+      RTC.set(myTime);
+      rewrite = true;
+    }
+   
+   if(minutevar == 31)
+   {
+      rewrite = false; 
+   }
     
   if(hourvar >= 25)
   {

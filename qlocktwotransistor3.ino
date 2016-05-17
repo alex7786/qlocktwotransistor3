@@ -6,7 +6,7 @@
 #include <Time.h> 
 
 #define DEBUG false //set to true for Serial Information
-#define SHOWTIME false //set to true for Serial clock
+#define SHOWTIME true //set to true for Serial clock
 #define SHOWLDR false //set to true for LDR Information
 
 #define SINGLELEDMAT false  //set to true for 1 LED at a time or false for whole word multiplexing
@@ -46,7 +46,8 @@ bool nach = false;
 bool halb = false;
 bool seccorrhelp = false;
 
-bool rewrite = false;
+int millibuffer = 0;    //test
+bool millionce = false;    //test
 
 int seccorrday = 0;      //seconds correction
 
@@ -74,6 +75,7 @@ void hours(int hours, int minutes);
 void secondcorr(int hours, int minutes,int seconds, bool helpvar, int seccor);
 void allon();
 void alloff();
+void ds3231probcorr(int minutevar, int hourvar);    //test
 
 
 void setup () {
@@ -81,7 +83,7 @@ void setup () {
   Wire.begin();
   //RTC.begin();
   
-  setTime(17,53,0,2,5,2016);    //set current time here
+  setTime(12,38,0,17,5,2016);    //set current time here
   myTime = now();
   RTC.set(myTime);
     
@@ -128,19 +130,9 @@ void loop () {
       minutevar = 0;
     }
     
-  if(minutevar == 30 && rewrite == false)          //test
-    {
-      setTime(hour(myTime),minute(myTime),second(myTime),day(myTime),month(myTime),year(myTime));
-      myTime = now();
-      RTC.set(myTime);
-      rewrite = true;
-    }
-   
-   if(minutevar == 31)
-   {
-      rewrite = false; 
-   }
     
+  ds3231probcorr(minutevar, hourvar);
+      
   if(hourvar >= 25)
   {
     hourvar = 0;
@@ -166,6 +158,23 @@ void loop () {
     alloff();
     secondcorr(hourvar, minutevar, (int)second(myTime), seccorrhelp, seccorrday);
   }
+}
+
+void ds3231probcorr(int minutevar, int hourvar)
+{
+  if(minutevar == 0 && hourvar == 0 && (int)second(myTime) == 0 && millionce == false)          //test
+    {
+       millibuffer = millis(); 
+       millionce = true;
+    }
+    
+  if(minutevar == 0 && hourvar == 0 && (int)second(myTime) == 0 && millionce == true && (millis() - millibuffer) >= 1000)          //test
+    {
+      setTime(hour(myTime),minute(myTime),1,day(myTime),month(myTime),year(myTime));
+      myTime = now();
+      RTC.set(myTime);
+      millionce = false;
+    }
 }
 
 void esist()

@@ -1,0 +1,27 @@
+Bauteil	Pin	Reihe/Spalte
+T1	1	GND LED Aussen
+R28	2	Rechts unten
+R27	3	Rechts oben
+R26	4	Links oben
+R25	5	Links unten
+T19	6	S8
+T18	7	S7
+T16	8	S5
+T17	9	S6
+T15	10	S4
+T12	11	S1
+R19	12	R8
+T14	13	S3
+T13	14	S2
+R18	15	R9
+R17	16	R3
+R5	17	R4
+T20	18	R7
+R4	19	R6
+T21	20	S11
+R22	21	R5
+T22	22	S10
+R21	23	R2
+R20	24	S9
+R23	25	R1
+R24	26	R10

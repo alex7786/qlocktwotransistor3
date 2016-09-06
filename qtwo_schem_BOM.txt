@@ -1,0 +1,49 @@
+Stückliste exportiert aus C:/Users/ad/Documents/eagle/qtwo/qtwo_schem.sch am 06.09.2016 10:56
+
+Part   Value              Device             Package  Description                          MF MPN      OC_FARNELL OC_NEWARK
+C1     330nF              CPOL-EUE2,5-6E     E2,5-6E  POLARIZED CAPACITOR, European symbol                                 
+C2     100nF              CPOL-EUE2,5-6E     E2,5-6E  POLARIZED CAPACITOR, European symbol                                 
+CON1   SEK-18             CON26              CON26    CONNECTOR                                        unknown    unknown  
+D1     1N4004             1N4004             DO41-10  DIODE                                                                
+DS3231                    PINHD-1X4          1X04     PIN HEADER                                                           
+H1     MOUNT-PAD-ROUND3.3 MOUNT-PAD-ROUND3.3 3,3-PAD  MOUNTING PAD, round                                                  
+H2     MOUNT-PAD-ROUND3.3 MOUNT-PAD-ROUND3.3 3,3-PAD  MOUNTING PAD, round                                                  
+IC1    74HC595N           74HC595N           DIL16    8-bit SHIFT REGISTER, output latch                                   
+IC2    74HC595N           74HC595N           DIL16    8-bit SHIFT REGISTER, output latch                                   
+IC3    74HC595N           74HC595N           DIL16    8-bit SHIFT REGISTER, output latch                                   
+IC4    7805TV             7805TV             TO220V   Positive VOLTAGE REGULATOR                                           
+JP1                       PINHD-1X2          1X02     PIN HEADER                                                           
+OPH1   VT90N1             VT90N1             VT900    Photoconductive Cell VT900 Series                                    
+R1     10k                R-EU_0204/7        0204/7   RESISTOR, European symbol                                            
+R2     2k                 R-EU_0204/7        0204/7   RESISTOR, European symbol                                            
+RN5    10                 8R-N               DIL16    DIL RESISTOR                                     unknown    unknown  
+RN6    10                 8R-N               DIL16    DIL RESISTOR                                     unknown    unknown  
+RN7    220                E4R                SIL8     SIL RESISTOR                                     unknown    unknown  
+RN8    680k               E4R                SIL8     SIL RESISTOR                                     unknown    unknown  
+RN9    680k               E4R                SIL8     SIL RESISTOR                                     unknown    unknown  
+RN10   680k               E4R                SIL8     SIL RESISTOR                                     unknown    unknown  
+S1                        10-XX              B3F-10XX OMRON SWITCH                            B3F-1000 176432     36M3542  
+S2                        10-XX              B3F-10XX OMRON SWITCH                            B3F-1000 176432     36M3542  
+T1     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T2     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T3     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T4     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T5     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T6     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T7     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T8     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T9     BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T10    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T11    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T12    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T13    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T14    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T15    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T16    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T17    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T18    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T19    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T20    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T21    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+T22    BC547              BC547              TO92     NPN TRANSISTOR                                                       
+U$1    ARDUINONANO        ARDUINONANO        PDIP-32  Arduino Nano                                                         

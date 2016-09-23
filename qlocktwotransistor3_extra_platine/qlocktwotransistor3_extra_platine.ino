@@ -1,4 +1,4 @@
-// SMD Variant !!!
+// extra Platine qtwo V2
 
 #include <Wire.h>
 //#include "RTClib.h"
@@ -27,8 +27,8 @@ const int pwmtable_8[32]=
 };
 
 const int mrshiftreset = 2;
-const int datapin = 6;
-const int clockpin = 5;
+const int datapin = 5;
+const int clockpin = 6;
 const int latch = 7;
 
 const int upperright =3;

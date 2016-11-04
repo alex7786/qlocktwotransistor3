@@ -1,4 +1,3 @@
-// extra Platine qtwo V2
 
 #include <Wire.h>
 //#include "RTClib.h"
@@ -975,8 +974,10 @@ void ldrdrim(int ldrin, int ldrdimout, int minutes)
   }
   
   //analogWrite(ldrdimout, (analogRead(ldrin)/dimfactor));    // Value between 0 and 255
-  analogWrite(ldrdimout, innerdim); 
-  analogWrite(dimPinOuterLEDS, outterdim);
+  //analogWrite(ldrdimout, innerdim); 
+  //analogWrite(dimPinOuterLEDS, outterdim);
+  analogWrite(ldrdimout, 0); 			//all undimmed
+  analogWrite(dimPinOuterLEDS, 255); 		//all undimmed
 }
 
 void settimeswitch(int hourplus, int minplus)

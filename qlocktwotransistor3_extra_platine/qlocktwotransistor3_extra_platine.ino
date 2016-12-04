@@ -2,7 +2,7 @@
 #include <Wire.h>
 //#include "RTClib.h"
 #include <DS3232RTC.h>
-#include <Time.h> 
+#include <TimeLib.h> 
 
 #define DEBUG false //set to true for Serial Information
 #define SHOWTIME true //set to true for Serial clock
